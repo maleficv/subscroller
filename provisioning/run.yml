@@ -1,0 +1,22 @@
+---
+- name: melcma.docker Register running Docker containers
+  command: docker ps -a
+  register: running_containers
+
+- name: melcma.docker Shut down Docker containers
+  command: docker container stop "{{ item.key }}"
+  with_dict: "{{ applications }}"
+  when: running_containers.stdout.find(item.key) != -1
+
+- name: melcma.docker Remove existing Docker containers
+  command: docker rm "{{ item.key }}" -f
+  with_dict: "{{ applications }}"
+  when: running_containers.stdout.find(item.key) != -1
+
+- name: melcma.docker Pull Docker images
+  command: docker pull "{{ item.value.image }}"
+  with_dict: "{{ applications }}"
+
+- name: melcma.docker Create new Docker Containers
+  command: docker container run -d -p "{{ item.value.port }}":"{{ item.value.port }}" --name "{{ item.key }}" "{{ item.value.image }}"
+  with_dict: "{{ applications }}"

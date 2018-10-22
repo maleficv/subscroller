@@ -1,0 +1,52 @@
+stages:
+- build
+- test
+- release
+- deploy
+
+build:
+  stage: build
+  image: node:10-alpine
+  script:
+  - npm install
+  - npm run build
+  artifacts:
+    paths:
+    - dist
+    - node_modules
+
+test-client:
+  stage: test
+  image: node:10-alpine
+  script:
+  - npm run test
+
+release:
+  stage: release
+  image: docker
+  services:
+  - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+  before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  script:
+  - docker build -t registry.gitlab.com/melcma/subscroller.com/client -f Dockerfile .
+  - docker build -t registry.gitlab.com/melcma/subscroller.com/proxy -f Dockerfile-proxy .
+  - docker push registry.gitlab.com/melcma/subscroller.com/client
+  - docker push registry.gitlab.com/melcma/subscroller.com/proxy
+
+deploy:
+  stage: deploy
+  image: alpine:3.8
+  before_script:
+  - apk --update add ansible openssh-client
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/digitalocean
+  - chmod 600 ~/.ssh/digitalocean
+  - eval "$(ssh-agent -s)"
+  - ssh-add ~/.ssh/digitalocean
+  script:
+  - cd provisioning
+  - ansible-playbook -i "$SSH_IP", provision.yml -u "$SSH_USER" --ssh-extra-args='-o StrictHostKeyChecking=no'

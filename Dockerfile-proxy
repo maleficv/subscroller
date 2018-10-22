@@ -1,0 +1,6 @@
+FROM node:10-alpine
+
+COPY src/proxy/app.js ./dist/proxy.js
+COPY package*.json ./
+
+CMD ["npm", "run", "start:proxy"]

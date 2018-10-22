@@ -1,0 +1,8 @@
+---
+applications:
+  subscroller.com:
+    image: registry.gitlab.com/melcma/subscroller.com/client:latest
+    port: 8004
+  subscroller.proxy:
+    image: registry.gitlab.com/melcma/subscroller.com/proxy:latest
+    port: 8005
