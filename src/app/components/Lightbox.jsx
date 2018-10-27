@@ -39,6 +39,7 @@ const Close = styled('button')`
   padding: 4px 9px;
   background-color: ${colors.primary};
   font-size: 20px;
+  color: white;
   border: 0;
   border-radius: 0 0 0 15px;
 `;

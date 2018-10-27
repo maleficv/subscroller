@@ -4,6 +4,12 @@ import styled from "react-emotion";
 const Image = styled('img')`
   width: 100%;
   height: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.is-loaded {
+    opacity: 1;
+  }
 `;
 
 const Video = styled('video')`
@@ -17,6 +23,6 @@ export default function Media({src}) {
             ? <Video autoPlay loop>
                 <source src={src} type='video/mp4'/>
             </Video>
-            : <Image src={src}/>
+            : <Image width="300" height="200" src={src}/>
     )
 }

@@ -27,11 +27,12 @@ const Nav = styled('nav')`
 
 const Toggle = styled('button')`
   position: absolute;
-  top: 40px;
+  top: 60px;
   right: 0;
   display: flex;
   transform: translateX(100%);
   padding: 12px;
+  color: white;
   background-color: ${colors.primary};
   border: 0;
   border-left: 0px;
