@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -21,7 +22,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/views/index.html'
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: 'src/public' }
+        ])
     ],
     resolve: {
         extensions: ['.mjs', '.js', '.jsx']

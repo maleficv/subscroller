@@ -20,10 +20,10 @@ ShallowWrapper {
       "children": Array [
         <Navigation />,
         <Router>
-          <Feed
+          <Home
             path="/"
             showLightbox={[Function]}
-            subreddit="wallpaper"
+            subreddit="wallpapers"
           />
           <Feed
             path="/subreddit/:subreddit"
@@ -51,10 +51,10 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <Feed
+            <Home
               path="/"
               showLightbox={[Function]}
-              subreddit="wallpaper"
+              subreddit="wallpapers"
             />,
             <Feed
               path="/subreddit/:subreddit"
@@ -72,7 +72,7 @@ ShallowWrapper {
             "props": Object {
               "path": "/",
               "showLightbox": [Function],
-              "subreddit": "wallpaper",
+              "subreddit": "wallpapers",
             },
             "ref": null,
             "rendered": null,
@@ -107,10 +107,10 @@ ShallowWrapper {
         "children": Array [
           <Navigation />,
           <Router>
-            <Feed
+            <Home
               path="/"
               showLightbox={[Function]}
-              subreddit="wallpaper"
+              subreddit="wallpapers"
             />
             <Feed
               path="/subreddit/:subreddit"
@@ -138,10 +138,10 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": Array [
-              <Feed
+              <Home
                 path="/"
                 showLightbox={[Function]}
-                subreddit="wallpaper"
+                subreddit="wallpapers"
               />,
               <Feed
                 path="/subreddit/:subreddit"
@@ -159,7 +159,7 @@ ShallowWrapper {
               "props": Object {
                 "path": "/",
                 "showLightbox": [Function],
-                "subreddit": "wallpaper",
+                "subreddit": "wallpapers",
               },
               "ref": null,
               "rendered": null,
