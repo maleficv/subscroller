@@ -24,7 +24,7 @@ class Home extends Component {
         this.state = {
             posts: [],
             after: '',
-            subreddit: 'wallpapers',
+            subreddit: props.subreddit,
             loading: false
         };
 
@@ -41,7 +41,7 @@ class Home extends Component {
 
     loop() {
         if ((hasReachedBottomScreen(-window.innerHeight / 2) || this.state.posts.length < 9) && !this.state.loading) {
-            this.getNewImages();
+            return this.getNewImages();
         }
 
         requestAnimationFrame(this.loop);
@@ -56,7 +56,7 @@ class Home extends Component {
             .then(() => handleLoadingImages(this.container))
             .then(revealImages)
             .then(this.unlockLoading)
-            .then(this.loop)
+            .then(this.loop);
     }
 
     lockLoading() {
@@ -100,5 +100,9 @@ class Home extends Component {
     }
 
 }
+
+Home.defaultProps = {
+    subreddit: 'wallpaper'
+};
 
 export default Home;
