@@ -3,6 +3,7 @@ import {Router} from '@reach/router';
 import {injectGlobal} from 'react-emotion';
 
 import Navigation from './components/Navigation';
+import Home from './components/Home';
 import Feed from './components/Feed';
 import Lightbox from './components/Lightbox';
 
@@ -47,7 +48,7 @@ class App extends Component {
             <React.Fragment>
                 <Navigation/>
                 <Router>
-                    <Feed path="/" showLightbox={this.showLightbox}/>
+                    <Home path="/" showLightbox={this.showLightbox}/>
                     <Feed path="/subreddit/:subreddit" showLightbox={this.showLightbox}/>
                 </Router>
                 {this.state.lightbox && <Lightbox post={this.state.lightbox} closeLightbox={this.closeLightbox}/>}
