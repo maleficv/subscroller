@@ -100,7 +100,8 @@ class Feed extends Component {
                 <Masonry style={MasonryStyles} options={MasonryOptions} ref={el => this.container = el}>
                     {posts.map(post =>
                         <Thumbnail key={post.data.id}
-                                   image={post.data.url}
+                                   src={post.data.url}
+                                   previews={post.data.preview.images[0].resolutions}
                                    title={post.data.title}
                                    link={post.data.permalink}
                                    showLightbox={this.props.showLightbox}/>)}

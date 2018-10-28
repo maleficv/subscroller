@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import styled from 'react-emotion';
 
+import {parseImage, extractPreview} from '../services/parseImage';
+
 import ImageLinks from './ImageLinks';
-import Media from './Media';
+import Image from './Image';
+import Video from './Video';
 
 const Box = styled('div')`
   float: left;
@@ -43,18 +46,21 @@ class Thumbnail extends Component {
 
     openLightbox() {
         return this.props.showLightbox({
-            image: this.props.image,
+            image: parseImage(this.props.src),
             link: this.props.link
         })
     }
 
     render() {
-        const {image, title, link} = this.props;
-        const src = image.replace('gifv', 'mp4');
+        const {src, title, link, previews} = this.props;
+
+        const image = parseImage(src);
+        const preview = extractPreview(previews);
+
         return (
             <Box onClick={this.handleClick}>
-                <ImageLinks title={title} image={src} link={link} hide={true} handleClick={this.openLightbox}/>
-                <Media src={src}/>
+                <ImageLinks title={title} image={image} link={link} hide={true} handleClick={this.openLightbox}/>
+                {image.includes('.mp4') ? <Video src={preview}/> : <Image previews={previews}/>}
             </Box>
         )
     }
