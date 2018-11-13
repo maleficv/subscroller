@@ -48,7 +48,7 @@ export default function Lightbox({post, closeLightbox}) {
     const {image, link} = post;
     return (
         <Modal onClick={closeLightbox}>
-            <Close onClick={closeLightbox}>
+            <Close onClick={closeLightbox} name="close">
                 <MdClose/>
             </Close>
             <ImageLinks image={image} link={link} hide={false}/>

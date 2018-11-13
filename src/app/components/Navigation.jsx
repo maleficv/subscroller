@@ -106,7 +106,7 @@ class Navigation extends Component {
                     </Option>
                 </Config>
 
-                <Toggle active={this.state.active} onClick={this.toggleNavigation}>
+                <Toggle active={this.state.active} onClick={this.toggleNavigation} name="toggle">
                     {this.state.active ? <MdClose/> : <MdMenu/>}
                 </Toggle>
             </Nav>
