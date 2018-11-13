@@ -60,7 +60,7 @@ class Thumbnail extends Component {
         return (
             <Box onClick={this.handleClick}>
                 <ImageLinks title={title} image={image} link={link} hide={true} handleClick={this.openLightbox}/>
-                {image.includes('.mp4') ? <Video src={preview}/> : <Image previews={previews}/>}
+                {image.includes('.mp4') ? <Video src={preview} alt={title}/> : <Image previews={previews} alt={title}/>}
             </Box>
         )
     }

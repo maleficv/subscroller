@@ -13,9 +13,9 @@ const StyledImage = styled('img')`
   }
 `;
 
-export default function Image({previews}) {
+export default function Image({previews, alt}) {
     const src = extractPreview(previews);
     return (
-        <StyledImage width="300" height="200" src={src}/>
+        <StyledImage width="300" height="200" src={src} alt={alt}/>
     )
 }

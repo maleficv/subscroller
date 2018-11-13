@@ -6,10 +6,10 @@ const StyledVideo = styled('video')`
   height: auto;
 `;
 
-export default function Video({src}) {
+export default function Video({src, alt}) {
     return (
             <StyledVideo autoPlay loop>
-                <source src={src} type='video/mp4'/>
+                <source src={src} type='video/mp4' alt={alt}/>
             </StyledVideo>
     )
 }
