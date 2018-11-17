@@ -3,6 +3,7 @@ import Masonry from 'react-masonry-component';
 import sortedUniqBy from 'lodash/sortedUniqBy';
 
 import Header from './Header';
+import Subheader from './Subheader';
 import Thumbnail from './Thumbnail';
 import {handleLoadingImages, revealImages} from '../services/handleLoadingImages';
 import fetchRedditApi from '../services/fetchRedditApi';
@@ -85,7 +86,8 @@ class Home extends Component {
 
         return (
             <React.Fragment>
-                <Header>Welcome to Subscroller!</Header>
+                <Subheader>Welcome to</Subheader>
+                <Header>Subscroller</Header>
                 <Masonry style={MasonryStyles} options={MasonryOptions} ref={el => this.container = el}>
                     {posts.map(post =>
                         <Thumbnail key={post.data.id}

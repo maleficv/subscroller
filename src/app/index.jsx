@@ -6,12 +6,13 @@ import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Feed from './components/Feed';
 import Lightbox from './components/Lightbox';
+import colors from './theme';
 
 injectGlobal`
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: ${colors.background};
   font-family: 'Lato', sans-serif;
 }`;
 

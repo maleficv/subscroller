@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'react-emotion';
 
 const StyledHeader = styled('h1')`
-    font-size: 72px;
+    font-size: 52px;
     text-align: center;
     text-transform: uppercase;
     color: white;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 0;
+    margin-bottom: 20px;
 `;
 
 export default function Header({children}) {
