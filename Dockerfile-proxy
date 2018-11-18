@@ -1,6 +1,8 @@
 FROM node:10-alpine
 
-COPY src/proxy/app.js ./dist/proxy.js
+COPY src/proxy/ ./dist/proxy/
 COPY package*.json ./
+
+RUN npm install
 
 CMD ["npm", "run", "start:proxy"]

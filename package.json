@@ -22,9 +22,9 @@
     ]
   },
   "scripts": {
-    "start:proxy": "PORT=8005 node dist/proxy",
+    "start:proxy": "PORT=8005 NODE_ENV=production node dist/proxy/App",
     "dev": "webpack-dev-server -d --config config/webpack.dev.config.js",
-    "dev:proxy": "PORT=9005 node src/proxy/app",
+    "dev:proxy": "PORT=9005 NODE_ENV=development node src/proxy/App",
     "build": "webpack -p --config config/webpack.prod.config.js",
     "test": "jest --colors"
   },
@@ -33,6 +33,7 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "lodash": "^4.17.11",
+    "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
