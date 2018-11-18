@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'react-emotion';
 
-import {parseImage, extractPreview} from '../services/parseImage';
+import {parseImage, extractPreview} from '../helpers/parseImage';
 
 import ImageLinks from './ImageLinks';
 import Image from './Image';

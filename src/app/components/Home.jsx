@@ -5,9 +5,9 @@ import sortedUniqBy from 'lodash/sortedUniqBy';
 import Header from './Header';
 import Subheader from './Subheader';
 import Thumbnail from './Thumbnail';
-import {handleLoadingImages, revealImages} from '../services/handleLoadingImages';
+import {handleLoadingImages, revealImages} from '../helpers/handleLoadingImages';
 import fetchRedditApi from '../services/fetchRedditApi';
-import hasReachedBottomScreen from '../services/hasReachedBottomScreen';
+import hasReachedBottomScreen from '../helpers/hasReachedBottomScreen';
 
 const MasonryStyles = {
     fontSize: 0,
