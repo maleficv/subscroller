@@ -26,7 +26,8 @@
     "dev": "webpack-dev-server -d --config config/webpack.dev.config.js",
     "dev:proxy": "PORT=9005 NODE_ENV=development node src/proxy/App",
     "build": "webpack -p --config config/webpack.prod.config.js",
-    "test": "jest --colors"
+    "test": "jest --colors",
+    "test:coverage": "jest --coverage"
   },
   "author": "",
   "license": "ISC",

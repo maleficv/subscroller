@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 
-import Feed from '../src/app/components/Feed';
-import fetchRedditApi from '../src/app/services/fetchRedditApi';
+import Feed from './Feed';
+import fetchRedditApi from '../services/fetchRedditApi';
 
 describe('Default Feed component', () => {
     const feed = mount(<Feed />);
