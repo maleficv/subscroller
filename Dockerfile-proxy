@@ -1,7 +1,9 @@
 FROM node:10-alpine
 
-COPY src/proxy/ ./dist/proxy/
-COPY package*.json ./
+COPY src/proxy/ /app
+COPY package*.json /app
+
+WORKDIR /app
 
 RUN npm install
 

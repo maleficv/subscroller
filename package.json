@@ -22,7 +22,7 @@
     ]
   },
   "scripts": {
-    "start:proxy": "PORT=8005 NODE_ENV=production node dist/proxy/App",
+    "start:proxy": "PORT=8005 NODE_ENV=production node ./App",
     "dev": "webpack-dev-server -d --config config/webpack.dev.config.js",
     "dev:proxy": "PORT=9005 NODE_ENV=development node src/proxy/App",
     "build": "webpack -p --config config/webpack.prod.config.js",
