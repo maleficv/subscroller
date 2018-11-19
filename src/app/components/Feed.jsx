@@ -10,7 +10,7 @@ import hasReachedBottomScreen from '../helpers/hasReachedBottomScreen';
 
 const MasonryStyles = {
     fontSize: 0,
-    margin: '0 120px'
+    margin: '0 10%'
 };
 
 const MasonryOptions = {
