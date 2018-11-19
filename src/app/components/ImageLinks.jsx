@@ -35,7 +35,7 @@ const Zoom = styled('button')`
 
 export default function ImageLinks({title, image, link, hide, handleClick}) {
     return (
-        <StyledLinks hide={hide}>
+        <StyledLinks className="image-links" hide={hide}>
             {title && <Zoom title={title} onClick={handleClick} name="zoom">
                 <MdZoomIn/>
             </Zoom>}

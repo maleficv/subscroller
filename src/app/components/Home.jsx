@@ -100,7 +100,6 @@ class Home extends Component {
             </React.Fragment>
         )
     }
-
 }
 
 Home.defaultProps = {

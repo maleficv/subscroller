@@ -3,9 +3,22 @@ import styled from 'react-emotion';
 
 import {parseImage, extractPreview} from '../helpers/parseImage';
 
+import colors from '../theme';
 import ImageLinks from './ImageLinks';
 import Image from './Image';
 import Video from './Video';
+
+const Cloak = styled('div')`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: ${colors.primary};
+  opacity: 0;
+  transition: opacity 0.1s ease;
+`;
 
 const Box = styled('div')`
   float: left;
@@ -14,7 +27,7 @@ const Box = styled('div')`
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
-  
+
   @media only screen and (max-width: 960px) {
     width: 50%;
   }
@@ -24,8 +37,12 @@ const Box = styled('div')`
   }
   
   &:hover {
-    & > div {
+    .image-links {
       opacity: 1;
+    }
+    
+    .cloak {
+      opacity: 0.3;
     }
   }
 `;
@@ -39,8 +56,7 @@ class Thumbnail extends Component {
         this.openLightbox = this.openLightbox.bind(this);
     }
 
-    handleClick(e) {
-        if (e.target.nodeName !== 'IMG') return;
+    handleClick() {
         this.openLightbox();
     }
 
@@ -58,7 +74,8 @@ class Thumbnail extends Component {
         const preview = extractPreview(previews);
 
         return (
-            <Box onClick={this.handleClick}>
+            <Box>
+                <Cloak className="cloak" onClick={this.handleClick}/>
                 <ImageLinks title={title} image={image} link={link} hide={true} handleClick={this.openLightbox}/>
                 {image.includes('.mp4') ? <Video src={preview} alt={title}/> : <Image previews={previews} alt={title}/>}
             </Box>
