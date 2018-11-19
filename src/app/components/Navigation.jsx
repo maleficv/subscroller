@@ -17,7 +17,7 @@ const Nav = styled('nav')`
   text-align: left;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 3;
+  z-index: 4;
   color: white;
   font-size: 16px;
 
@@ -74,7 +74,9 @@ class Navigation extends Component {
         this.toggleNSFW = this.toggleNSFW.bind(this);
     }
 
-    toggleNavigation() {
+    toggleNavigation(e) {
+        if (e.target.classList.contains('navlink-delete')) return;
+
         this.setState(() => {
             return {
                 active: !this.state.active
