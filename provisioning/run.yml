@@ -18,5 +18,5 @@
   with_dict: "{{ applications }}"
 
 - name: melcma.docker Create new Docker Containers
-  command: docker container run -d -p "{{ item.value.port }}":"{{ item.value.port }}" --name "{{ item.key }}" "{{ item.value.image }}"
+  command: docker container run -d -p "{{ item.value.port }}":"{{ item.value.port }}" -v ~/apps/"{{ item.key }}"/logs:/app/logs --name "{{ item.key }}" "{{ item.value.image }}"
   with_dict: "{{ applications }}"
