@@ -1,8 +1,8 @@
 ---
 applications:
-  subscroller.com:
-    image: registry.gitlab.com/melcma/subscroller.com/client:latest
+  subscroller.app:
+    image: registry.gitlab.com/melcma/subscroller.app/client:latest
     port: 8004
-  subscroller.proxy:
-    image: registry.gitlab.com/melcma/subscroller.com/proxy:latest
+  proxy.subscroller.app:
+    image: registry.gitlab.com/melcma/subscroller.app/proxy:latest
     port: 8005
