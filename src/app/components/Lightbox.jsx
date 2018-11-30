@@ -5,7 +5,7 @@ import colors from '../theme';
 
 import ImageLinks from './ImageLinks';
 
-const Modal = styled('div')`
+const Modal = styled('a')`
   position: fixed;
   top: 0;
   left: 0;
@@ -47,7 +47,7 @@ const Close = styled('button')`
 export default function Lightbox({post, closeLightbox}) {
     const {image, link} = post;
     return (
-        <Modal onClick={closeLightbox}>
+        <Modal href={image} onClick={closeLightbox}>
             <Close onClick={closeLightbox} name="close">
                 <MdClose/>
             </Close>

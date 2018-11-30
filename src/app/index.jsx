@@ -38,12 +38,16 @@ class App extends Component {
         })
     }
 
-    closeLightbox() {
-        this.setState(() => {
-            return {
-                lightbox: ''
-            }
-        })
+    closeLightbox(e) {
+        if (e.button === 0) {
+            e.preventDefault();
+            this.setState(() => {
+                return {
+                    lightbox: ''
+                }
+            })
+        }
+
     }
 
     render() {

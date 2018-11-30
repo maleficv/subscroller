@@ -8,7 +8,7 @@ import ImageLinks from './ImageLinks';
 import Image from './Image';
 import Video from './Video';
 
-const Cloak = styled('div')`
+const Cloak = styled('a')`
   position: absolute;
   top: 0;
   left: 0;
@@ -55,8 +55,11 @@ class Thumbnail extends Component {
         this.openLightbox = this.openLightbox.bind(this);
     }
 
-    handleClick() {
-        this.openLightbox();
+    handleClick(e) {
+        if (e.button === 0) {
+            e.preventDefault();
+            this.openLightbox();
+        }
     }
 
     openLightbox() {
@@ -74,7 +77,7 @@ class Thumbnail extends Component {
 
         return (
             <Box>
-                <Cloak className="cloak" onClick={this.handleClick}/>
+                <Cloak className="cloak" href={this.props.src} onClick={this.handleClick}/>
                 <ImageLinks title={title} image={image} link={link} hide={true} handleClick={this.openLightbox}/>
                 {image.includes('.mp4') ? <Video src={preview} alt={title}/> : <Image previews={previews} alt={title}/>}
             </Box>
