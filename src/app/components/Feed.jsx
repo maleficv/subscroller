@@ -61,7 +61,7 @@ class Feed extends Component {
         const {subreddit, after} = this.state;
 
         this.lockLoading()
-            .then(() => fetchRedditApi(subreddit, after))
+            .then(() => fetchRedditApi(subreddit, after, 6))
             .then(data => this.updatePosts(data))
             .then(() => handleLoadingImages(this.container))
             .then(revealImages)
