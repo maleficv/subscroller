@@ -52,6 +52,10 @@ const CustomSubLink = styled('input')`
   &:focus {
     background-color: black;
   }
+
+  &::placeholder {
+    color: white;
+  }
 `;
 
 const CustomSubButton = styled('button')`

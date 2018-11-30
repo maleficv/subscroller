@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Router} from '@reach/router';
 import {injectGlobal} from 'react-emotion';
+import 'normalize.css';
 
 import Navigation from './components/Navigation';
 import Home from './components/Home';
@@ -14,6 +15,7 @@ body {
   padding: 0;
   background-color: ${colors.background};
   font-family: 'Lato', sans-serif;
+  font-size: 16px;
 }`;
 
 class App extends Component {
