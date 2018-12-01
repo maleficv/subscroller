@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Router} from '@reach/router';
 import {injectGlobal} from 'react-emotion';
-import 'normalize.css';
 
 import Navigation from './components/Navigation';
 import Home from './components/Home';
