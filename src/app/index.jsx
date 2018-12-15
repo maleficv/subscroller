@@ -10,7 +10,7 @@ import colors from './theme';
 
 injectGlobal`
 body {
-  margin: 20px 0 0 0;
+  margin: 20px 0;
   padding: 0;
   background-color: ${colors.background};
   font-family: 'Lato', sans-serif;

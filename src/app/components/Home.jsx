@@ -1,85 +1,20 @@
 import React, {Component} from 'react';
-import Masonry from 'react-masonry-component';
-import sortedUniqBy from 'lodash/sortedUniqBy';
 
 import Header from './Header';
 import Subheader from './Subheader';
-import Thumbnail from './Thumbnail';
-import {handleLoadingImages, revealImages} from '../helpers/handleLoadingImages';
-import fetchRedditApi from '../services/fetchRedditApi';
-import hasReachedBottomScreen from '../helpers/hasReachedBottomScreen';
+import SubsGrid from './SubsGrid/Grid';
 
-const MasonryStyles = {
-    fontSize: 0,
-    margin: '0 120px'
-};
-
-const MasonryOptions = {
-    transitionDuration: 0
-};
+import subreddits from '../../config/subreddits';
 
 class Home extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            posts: [],
-            after: '',
-            subreddit: props.subreddit,
-            loading: false
+            posts: subreddits
         };
-
-        this.container = null;
-        this.lockLoading = this.lockLoading.bind(this);
-        this.unlockLoading = this.unlockLoading.bind(this);
-        this.getNewImages = this.getNewImages.bind(this);
-        this.loop = this.loop.bind(this);
     }
 
-    componentDidMount() {
-        this.getNewImages();
-    }
-
-    loop() {
-        if ((hasReachedBottomScreen(-window.innerHeight / 2) || this.state.posts.length < 9) && !this.state.loading) {
-            return this.getNewImages();
-        }
-
-        requestAnimationFrame(this.loop);
-    }
-
-    getNewImages() {
-        const {subreddit, after} = this.state;
-
-        this.lockLoading()
-            .then(() => fetchRedditApi(subreddit, after, 3, 'top'))
-            .then(data => this.updatePosts(data))
-            .then(() => handleLoadingImages(this.container))
-            .then(revealImages)
-            .then(this.unlockLoading)
-            .then(this.loop);
-    }
-
-    lockLoading() {
-        return new Promise(resolve => {
-            this.setState(() => ({loading: true}), resolve)
-        })
-    }
-
-    unlockLoading() {
-        return new Promise(resolve => {
-            this.setState(() => ({loading: false}), resolve)
-        })
-    }
-
-    updatePosts(data) {
-        return new Promise(resolve => {
-            this.setState(state => ({
-                posts: sortedUniqBy(state.posts.concat(data.posts), 'data.id'),
-                after: data.after
-            }), resolve);
-        })
-    }
 
     render() {
         const {posts} = this.state;
@@ -88,22 +23,11 @@ class Home extends Component {
             <React.Fragment>
                 <Subheader>Welcome to</Subheader>
                 <Header>Subscroller</Header>
-                <Masonry style={MasonryStyles} options={MasonryOptions} ref={el => this.container = el}>
-                    {posts.map(post =>
-                        <Thumbnail key={post.data.id}
-                                   src={post.data.url}
-                                   previews={post.data.preview.images[0].resolutions}
-                                   title={post.data.title}
-                                   link={post.data.permalink}
-                                   showLightbox={this.props.showLightbox}/>)}
-                </Masonry>
+                <Subheader>Reddit Subreddits' image gallery</Subheader>
+                <SubsGrid posts={posts}/>
             </React.Fragment>
         )
     }
 }
-
-Home.defaultProps = {
-    subreddit: 'wallpaper'
-};
 
 export default Home;

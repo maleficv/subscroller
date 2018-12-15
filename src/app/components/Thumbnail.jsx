@@ -4,6 +4,7 @@ import styled from 'react-emotion';
 import {parseImage, extractPreview} from '../helpers/parseImage';
 
 import colors from '../theme';
+import Box from './Box';
 import ImageLinks from './ImageLinks';
 import Image from './Image';
 import Video from './Video';
@@ -20,32 +21,7 @@ const Cloak = styled('a')`
   transition: opacity 0.1s ease;
 `;
 
-const Box = styled('div')`
-  float: left;
-  width: 33.33%;
-  padding: 2px;
-  box-sizing: border-box;
-  position: relative;
-  cursor: pointer;
 
-  @media only screen and (max-width: 960px) {
-    width: 50%;
-  }
-  
-  @media only screen and (max-width: 480px) {
-    width: 100%;
-  }
-  
-  &:hover {
-    .image-links {
-      opacity: 1;
-    }
-    
-    .cloak {
-      opacity: 0.3;
-    }
-  }
-`;
 
 class Thumbnail extends Component {
     constructor(props) {

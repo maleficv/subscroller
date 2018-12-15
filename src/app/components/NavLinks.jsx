@@ -8,6 +8,8 @@ import addSubToStorage from '../services/addSubToStorage';
 import getSubsToStorage from '../services/getSubsFromStorage';
 import deleteSubFromStorage from '../services/deleteSubFromStorage';
 
+import subreddits from '../../config/subreddits';
+
 const StyledLinks = styled('div')`
   display: flex;
   flex-direction: column;
@@ -21,6 +23,7 @@ const Navlink = styled(Link)`
   border-bottom: 1px solid transparent;
   padding: 14px 12px 14px 12px;
   margin-bottom: 12px;
+  text-transform: capitalize;
 
   &[aria-current="page"],
   &:hover {
@@ -84,10 +87,11 @@ class NavLinks extends Component {
     constructor(props) {
         super(props);
 
-        const subreddits = getSubsToStorage();
+        const customSubreddits = getSubsToStorage();
 
         this.state = {
-            subreddits
+            subreddits,
+            customSubreddits
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -119,13 +123,8 @@ class NavLinks extends Component {
         return (
             <StyledLinks>
                 <Navlink to="/" onClick={toggleNavigation}>Home</Navlink>
-                <Navlink to="/subreddit/wallpaper" onClick={toggleNavigation}>Wallpaper</Navlink>
-                <Navlink to="/subreddit/wallpapers" onClick={toggleNavigation}>Wallpapers</Navlink>
-                <Navlink to="/subreddit/unixporn" onClick={toggleNavigation}>Unixporn</Navlink>
-                <Navlink to="/subreddit/gif" onClick={toggleNavigation}>Gif</Navlink>
-                {nsfw && <Navlink to="/subreddit/all" onClick={toggleNavigation}>All (NSFW)</Navlink>}
-                {nsfw && <Navlink to="/subreddit/nsfw" onClick={toggleNavigation}>NSFW</Navlink>}
-                {this.state.subreddits.map(subreddit =>
+                {this.state.subreddits.map(subreddit => <Navlink to={`/subreddit/${subreddit.sub}`} onClick={toggleNavigation}>{subreddit.sub}</Navlink> )}
+                {this.state.customSubreddits.map(subreddit =>
                     <Navlink to={"/subreddit/" + subreddit}
                              onClick={toggleNavigation}>{subreddit}
                         <DeleteCustomSubreddit className="navlink-delete" onClick={(e) => this.onDelete(e, subreddit)}>
