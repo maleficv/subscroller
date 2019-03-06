@@ -15,6 +15,11 @@ const server = http.createServer(async (req, res) => {
     const url = req.url
         .substr(2, req.url.length)
         .split('url=')[1];
+        
+    const ip = req.headers['x-real-ip'] || req.headers['X-Real-IP'] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    (req.connection.socket ? req.connection.socket.remoteAddress : null);
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -26,7 +31,7 @@ const server = http.createServer(async (req, res) => {
     try {
         const data = await getApi(url);
 
-        !isDev() && logSubredditSuccess(url, moment().format('YYYY/MM/DD hh:mm:ss'), saveLogToFile);
+        !isDev() && logSubredditSuccess(url, ip, moment().format('YYYY/MM/DD hh:mm:ss'), saveLogToFile);
 
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(data);
