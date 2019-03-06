@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 
 const Box = styled('div')`
   float: left;
@@ -8,11 +8,11 @@ const Box = styled('div')`
   position: relative;
   cursor: pointer;
 
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 1200px) {
     width: 50%;
   }
   
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 720px) {
     width: 100%;
   }
   

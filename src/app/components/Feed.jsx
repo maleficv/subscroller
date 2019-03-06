@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Masonry from 'react-masonry-component';
-import sortedUniqBy from 'lodash/sortedUniqBy';
 
 import Header from './Header';
 import Thumbnail from './Thumbnail';
 import {handleLoadingImages, revealImages} from '../helpers/handleLoadingImages';
 import fetchRedditApi from '../services/fetchRedditApi';
 import hasReachedBottomScreen from '../helpers/hasReachedBottomScreen';
+
+let t;
 
 const MasonryStyles = {
     fontSize: 0,
@@ -39,6 +40,10 @@ class Feed extends Component {
         this.getNewImages();
     }
 
+    componentWillUnmount() {
+        cancelAnimationFrame(t);
+    }
+
     componentDidUpdate(prevProps) {
         if (this.props.subreddit !== prevProps.subreddit) {
             this.setState({
@@ -54,7 +59,7 @@ class Feed extends Component {
             return this.getNewImages();
         }
 
-        requestAnimationFrame(this.loop);
+        t = requestAnimationFrame(this.loop);
     }
 
     getNewImages() {
@@ -82,9 +87,18 @@ class Feed extends Component {
     }
 
     updatePosts(data) {
+
+        function concatUniquePostsByDataId(previousPosts, newPosts) {
+            const filteredPosts = [...newPosts].filter(post => {
+                return ![...previousPosts].map(post => post.data.id).includes(post.data.id);
+            })
+
+            return previousPosts.concat(filteredPosts);
+        }
+
         return new Promise(resolve => {
-            this.setState(state => ({
-                posts: sortedUniqBy(state.posts.concat(data.posts), 'data.id'),
+            this.setState(prevState => ({
+                posts: concatUniquePostsByDataId(prevState.posts, data.posts),
                 after: data.after
             }), resolve);
         })

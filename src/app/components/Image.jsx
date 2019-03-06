@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "react-emotion";
-import {extractPreview, parseImage} from "../helpers/parseImage";
+import styled from '@emotion/styled';
+import {extractPreview} from "../helpers/parseImage";
 
 const StyledImage = styled('img')`
   width: 100%;

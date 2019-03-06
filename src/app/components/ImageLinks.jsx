@@ -1,6 +1,6 @@
 import {MdFileDownload, MdLink, MdZoomIn} from "react-icons/md";
 import React from "react";
-import styled from "react-emotion";
+import styled from '@emotion/styled';
 import colors from "../theme";
 
 const StyledLinks = styled('div')`

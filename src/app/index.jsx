@@ -1,28 +1,17 @@
 import React, {Component} from 'react';
 import {Router} from '@reach/router';
-import {injectGlobal} from 'react-emotion';
 
 import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Feed from './components/Feed';
 import Lightbox from './components/Lightbox';
-import colors from './theme';
-
-injectGlobal`
-body {
-  margin: 20px 0;
-  padding: 0;
-  background-color: ${colors.background};
-  font-family: 'Lato', sans-serif;
-  font-size: 16px;
-}`;
 
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            lightbox: ''
+            lightbox: null
         };
 
         this.showLightbox = this.showLightbox.bind(this);
@@ -30,21 +19,13 @@ class App extends Component {
     }
 
     showLightbox(post) {
-        this.setState(() => {
-            return {
-                lightbox: post
-            }
-        })
+        this.setState({lightbox: post})
     }
 
     closeLightbox(e) {
         if (e.button === 0) {
             e.preventDefault();
-            this.setState(() => {
-                return {
-                    lightbox: ''
-                }
-            })
+            this.setState({lightbox: null})
         }
 
     }

@@ -1,5 +1,7 @@
+import isProduction from './../../helpers/isProduction';
+
 export default function fetchRedditApi(subreddit, after, limit = 18, type = 'new', timeline = 'all') {
-    const host = 'https://proxy.subscroller.app';
+    const host = isProduction() ? 'https://proxy.subscroller.app' : 'http://localhost:9005';
     const reddit = `https://www.reddit.com/r/${subreddit}/${type}.json?limit=${limit}&after=${after}&t=${timeline}`;
     return fetch(`${host}/?url=${reddit}`)
         .then(res => res.json())

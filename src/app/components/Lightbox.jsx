@@ -1,11 +1,11 @@
 import React from 'react';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import {MdClose} from 'react-icons/md';
 import colors from '../theme';
 
 import ImageLinks from './ImageLinks';
 
-const Modal = styled('a')`
+const Modal = styled('div')`
   position: fixed;
   top: 0;
   left: 0;

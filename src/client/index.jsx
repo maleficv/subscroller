@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import isProduction from '../helpers/isProduction';
 import Container from './Container';
 
-if (module.hot) {
+if (module.hot && isProduction()) {
     module.hot.accept();
 }
 

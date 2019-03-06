@@ -1,9 +1,9 @@
 import {Link} from "@reach/router";
 import React, {Component} from "react";
-import styled from "react-emotion";
-import {handleLoadingImages, revealImages} from "../../helpers/handleLoadingImages";
+import styled from '@emotion/styled';
+import {handleLoadingImages, revealImages} from "../helpers/handleLoadingImages";
 
-import colors from '../../theme';
+import colors from '../theme';
 
 const Grid = styled('div')`
   display: flow-root;
@@ -21,6 +21,20 @@ const Box = styled(Link)`
   overflow: hidden;
   
   &:hover {
+    .cloak {
+      opacity: 0;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 50%;
+    padding-bottom: 36%;
+  }
+  
+  @media only screen and (max-width: 720px) {
+    width: 100%;
+    padding-bottom: 72%;
+
     .cloak {
       opacity: 0;
     }
@@ -90,7 +104,8 @@ class SubsGrid extends Component {
                 {posts.map(post => {
                         const {image, sub} = post;
                         return (
-                            <Box to={`/subreddit/${sub}`}>
+                            <Box to={`/subreddit/${sub}`}
+                                 key={sub}>
                                 <Caption>{sub}</Caption>
                                 <Cloak className="cloak"/>
                                 <Image

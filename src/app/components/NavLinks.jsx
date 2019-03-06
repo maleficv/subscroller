@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import styled from "react-emotion"
+import styled from '@emotion/styled';
 import {MdAdd, MdClear} from 'react-icons/md';
 import {Link} from "@reach/router";
 import colors from "../theme";
@@ -107,7 +107,7 @@ class NavLinks extends Component {
         if (value === '') return;
 
         addSubToStorage(value);
-        this.setState({subreddits: getSubsToStorage()});
+        this.setState({customSubreddits: getSubsToStorage()});
         input.value = '';
     }
 
@@ -115,17 +115,18 @@ class NavLinks extends Component {
         e.preventDefault();
         deleteSubFromStorage(subreddit);
 
-        this.setState({subreddits: getSubsToStorage()});
+        this.setState({customSubreddits: getSubsToStorage()});
     }
 
     render() {
-        const {toggleNavigation, nsfw} = this.props;
+        const {toggleNavigation} = this.props;
         return (
             <StyledLinks>
                 <Navlink to="/" onClick={toggleNavigation}>Home</Navlink>
-                {this.state.subreddits.map(subreddit => <Navlink to={`/subreddit/${subreddit.sub}`} onClick={toggleNavigation}>{subreddit.sub}</Navlink> )}
+                {this.state.subreddits.map(subreddit => <Navlink key={subreddit.sub} to={`/subreddit/${subreddit.sub}`} onClick={toggleNavigation}>{subreddit.sub}</Navlink> )}
                 {this.state.customSubreddits.map(subreddit =>
                     <Navlink to={"/subreddit/" + subreddit}
+                             key={subreddit}
                              onClick={toggleNavigation}>{subreddit}
                         <DeleteCustomSubreddit className="navlink-delete" onClick={(e) => this.onDelete(e, subreddit)}>
                             <MdClear/>

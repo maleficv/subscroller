@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import Header from './Header';
 import Subheader from './Subheader';
-import SubsGrid from './SubsGrid/Grid';
+import SubsGrid from './SubsGrid';
 
 import subreddits from '../../config/subreddits';
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import styled from 'react-emotion';
-import {MdMenu, MdClose} from 'react-icons/md';
+import styled from '@emotion/styled';
+import {MdMenu, MdClose, MdHome} from 'react-icons/md';
+import {Link} from "@reach/router";
 import colors from '../theme';
 
 import NavLinks from './NavLinks';
@@ -27,7 +28,7 @@ const Nav = styled('nav')`
 
 const Toggle = styled('button')`
   position: absolute;
-  top: 60px;
+  top: 120px;
   right: 0;
   display: flex;
   transform: translateX(100%);
@@ -43,21 +44,22 @@ const Toggle = styled('button')`
   }
 `;
 
-const Divider = styled('span')`
-  width: 100%;
-  height: 1px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: white;
-`;
+const HomeButton = styled(Link)`
+    position: absolute;
+    top: 60px;
+    right: 0;
+    display: flex;
+    transform: translateX(100%);
+    padding: 12px;
+    color: white;
+    background-color: ${colors.primary};
+    border: 0;
+    border-left: 0px;
+    font-size: 24px;
 
-const Config = styled('div')`
-  color: white;
-`;
-
-const Option = styled('div')`
-  display: flex;
-  justify-content: space-between;
+    &::-moz-focus-inner {
+    border: 0;
+    }
 `;
 
 class Navigation extends Component {
@@ -66,12 +68,10 @@ class Navigation extends Component {
         super(props);
         this.state = {
             active: false,
-            nsfw: localStorage.getItem('nsfw') === 'true',
             grid: 3
         };
 
         this.toggleNavigation = this.toggleNavigation.bind(this);
-        this.toggleNSFW = this.toggleNSFW.bind(this);
     }
 
     toggleNavigation(e) {
@@ -84,30 +84,13 @@ class Navigation extends Component {
         })
     }
 
-    toggleNSFW(event) {
-        event.persist();
-        this.setState(() => {
-            return {
-                nsfw: event.target.checked
-            }
-        }, () => {
-            localStorage.setItem('nsfw', event.target.checked.toString());
-        })
-    }
-
     render() {
         return (
             <Nav className="navigation" active={this.state.active}>
-                <NavLinks toggleNavigation={this.toggleNavigation} nsfw={this.state.nsfw}/>
-                <Config>
-                    <Divider/>
-                    <Option>Show NSFW content
-                        <input type="checkbox"
-                               checked={this.state.nsfw}
-                               onChange={this.toggleNSFW}/>
-                    </Option>
-                </Config>
-
+                <NavLinks toggleNavigation={this.toggleNavigation}/>
+                <HomeButton to="/">
+                    <MdHome/>
+                </HomeButton>
                 <Toggle active={this.state.active} onClick={this.toggleNavigation} name="toggle">
                     {this.state.active ? <MdClose/> : <MdMenu/>}
                 </Toggle>
