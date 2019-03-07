@@ -37,6 +37,7 @@ class App extends Component {
                 <Router>
                     <Home path="/" subreddit="wallpapers" showLightbox={this.showLightbox}/>
                     <Feed path="/subreddit/:subreddit" showLightbox={this.showLightbox}/>
+                    <Feed path="/r/:subreddit" showLightbox={this.showLightbox}/>
                 </Router>
                 {this.state.lightbox && <Lightbox post={this.state.lightbox} closeLightbox={this.closeLightbox}/>}
             </React.Fragment>

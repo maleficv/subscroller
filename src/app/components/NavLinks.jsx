@@ -123,9 +123,9 @@ class NavLinks extends Component {
         return (
             <StyledLinks>
                 <Navlink to="/" onClick={toggleNavigation}>Home</Navlink>
-                {this.state.subreddits.map(subreddit => <Navlink key={subreddit.sub} to={`/subreddit/${subreddit.sub}`} onClick={toggleNavigation}>{subreddit.sub}</Navlink> )}
+                {this.state.subreddits.map(subreddit => <Navlink key={subreddit.sub} to={`/r/${subreddit.sub}`} onClick={toggleNavigation}>{subreddit.sub}</Navlink> )}
                 {this.state.customSubreddits.map(subreddit =>
-                    <Navlink to={"/subreddit/" + subreddit}
+                    <Navlink to={"/r/" + subreddit}
                              key={subreddit}
                              onClick={toggleNavigation}>{subreddit}
                         <DeleteCustomSubreddit className="navlink-delete" onClick={(e) => this.onDelete(e, subreddit)}>

@@ -104,7 +104,7 @@ class SubsGrid extends Component {
                 {posts.map(post => {
                         const {image, sub} = post;
                         return (
-                            <Box to={`/subreddit/${sub}`}
+                            <Box to={`/r/${sub}`}
                                  key={sub}>
                                 <Caption>{sub}</Caption>
                                 <Cloak className="cloak"/>
