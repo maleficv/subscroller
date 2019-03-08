@@ -31,12 +31,12 @@ const server = http.createServer(async (req, res) => {
     try {
         const data = await getApi(url);
 
-        !isDev() && logSubredditSuccess(url, ip, moment().format('YYYY/MM/DD hh:mm:ss'), saveLogToFile);
+        !isDev() && logSubredditSuccess(url, ip, moment().format('YYYY/MM/DD HH:mm:ss'), saveLogToFile);
 
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(data);
     } catch (error) {
-        !isDev() && logSubredditNotFound(url, moment().format('YYYY/MM/DD hh:mm:ss'), saveLogToFile);
+        !isDev() && logSubredditNotFound(url, moment().format('YYYY/MM/DD HH:mm:ss'), saveLogToFile);
 
         res.writeHead(404);
         res.end();
@@ -44,16 +44,16 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.on('error', error => {
-    !isDev() && logServerEvent(error, moment().format('YYYY/MM/DD hh:mm:ss'), saveLogToFile);
+    !isDev() && logServerEvent(error, moment().format('YYYY/MM/DD HH:mm:ss'), saveLogToFile);
 });
 
 server.listen(port, () => {
     if (isDev()) {
         return console.log(`Server listening on port ${port}`);
     }
-    !isDev() && logServerEvent(port, moment().format('YYYY/MM/DD hh:mm:ss'), saveLogToFile);
+    !isDev() && logServerEvent(port, moment().format('YYYY/MM/DD HH:mm:ss'), saveLogToFile);
 });
 
 process.on('uncaughtException', () => {
-    !isDev() && logServerEvent('process error occurred', moment().format('YYYY/MM/DD hh:mm:ss'), saveLogToFile);
+    !isDev() && logServerEvent('process error occurred', moment().format('YYYY/MM/DD HH:mm:ss'), saveLogToFile);
 });
