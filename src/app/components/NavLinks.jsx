@@ -13,17 +13,20 @@ import subreddits from '../../config/subreddits';
 const StyledLinks = styled('div')`
   display: flex;
   flex-direction: column;
+  overflow: auto;
 `;
 
 const Navlink = styled(Link)`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: inherit;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   padding: 14px 12px 14px 12px;
   margin-bottom: 12px;
   text-transform: capitalize;
+  line-height: 24px;
 
   &[aria-current="page"],
   &:hover {
