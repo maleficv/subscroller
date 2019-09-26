@@ -7,9 +7,9 @@ export default function fetchRedditApi(subreddit, after, limit = 18, type = 'new
         .then(res => res.json())
         .then(res => ({
             posts: res.data.children
-                .filter(wallpaper => wallpaper.data.url.match(/.(jpg|png|gif)$/g))
+                .filter(wallpaper => wallpaper.data.url.match(/gfycat|.(jpg|png|gif)$/g))
                 .filter(wallpaper => wallpaper.data.url.match(/^https:\/\//g))
-                .filter(wallpaper => wallpaper.data.preview.images[0].resolutions.length),
+                .filter(wallpaper => wallpaper.data.preview && wallpaper.data.preview.images[0].resolutions.length),
             after: res.data.after
         }))
 };
