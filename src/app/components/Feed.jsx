@@ -45,7 +45,7 @@ class Feed extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.subreddit !== prevProps.subreddit) {
+        if (this.props.subreddit !== prevProps.subreddit || this.props.sortBy !== prevProps.sortBy) {
             this.setState({
                 posts: [],
                 after: '',
@@ -64,9 +64,10 @@ class Feed extends Component {
 
     getNewImages() {
         const {subreddit, after} = this.state;
+        const sortBy = this.props.sortBy || undefined;
 
         this.lockLoading()
-            .then(() => fetchRedditApi(subreddit, after, 6))
+            .then(() => fetchRedditApi(subreddit, after, 6, sortBy))
             .then(data => this.updatePosts(data))
             .then(() => handleLoadingImages(this.container))
             .then(revealImages)

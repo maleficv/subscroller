@@ -11,11 +11,13 @@ class App extends Component {
         super(props);
 
         this.state = {
-            lightbox: null
+            lightbox: null,
+            sortBy: null,
         };
 
         this.showLightbox = this.showLightbox.bind(this);
         this.closeLightbox = this.closeLightbox.bind(this);
+        this.updateOptions = this.updateOptions.bind(this);
     }
 
     showLightbox(post) {
@@ -27,17 +29,20 @@ class App extends Component {
             e.preventDefault();
             this.setState({lightbox: null})
         }
+    }
 
+    updateOptions(settings) {
+        this.setState({sortBy: settings.sortBy});
     }
 
     render() {
         return (
             <React.Fragment>
-                <Navigation/>
+                <Navigation updateOptions={this.updateOptions}/>
                 <Router>
                     <Home path="/" subreddit="wallpapers" showLightbox={this.showLightbox}/>
-                    <Feed path="/subreddit/:subreddit" showLightbox={this.showLightbox}/>
-                    <Feed path="/r/:subreddit" showLightbox={this.showLightbox}/>
+                    <Feed path="/subreddit/:subreddit" showLightbox={this.showLightbox} sortBy={this.state.sortBy}/>
+                    <Feed path="/r/:subreddit" showLightbox={this.showLightbox} sortBy={this.state.sortBy}/>
                 </Router>
                 {this.state.lightbox && <Lightbox post={this.state.lightbox} closeLightbox={this.closeLightbox}/>}
             </React.Fragment>

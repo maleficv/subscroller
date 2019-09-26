@@ -5,6 +5,7 @@ import {Link} from "@reach/router";
 import colors from '../theme';
 
 import NavLinks from './NavLinks';
+import Options from './Options';
 
 const Nav = styled('nav')`
   position: fixed;
@@ -72,6 +73,7 @@ class Navigation extends Component {
         };
 
         this.toggleNavigation = this.toggleNavigation.bind(this);
+        this.updateOptions = this.updateOptions.bind(this);
     }
 
     toggleNavigation(e) {
@@ -84,6 +86,10 @@ class Navigation extends Component {
         })
     }
 
+    updateOptions(settings) {
+        this.props.updateOptions(settings);
+    }
+
     render() {
         return (
             <Nav className="navigation" active={this.state.active}>
@@ -94,6 +100,7 @@ class Navigation extends Component {
                 <Toggle active={this.state.active} onClick={this.toggleNavigation} name="toggle">
                     {this.state.active ? <MdClose/> : <MdMenu/>}
                 </Toggle>
+                <Options updateOptions={this.updateOptions} />
             </Nav>
         )
     }
