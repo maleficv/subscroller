@@ -40,9 +40,9 @@ class App extends Component {
             <React.Fragment>
                 <Navigation updateOptions={this.updateOptions}/>
                 <Router>
-                    <Home path="/" subreddit="wallpapers" showLightbox={this.showLightbox}/>
-                    <Feed path="/subreddit/:subreddit" showLightbox={this.showLightbox} sortBy={this.state.sortBy}/>
-                    <Feed path="/r/:subreddit" showLightbox={this.showLightbox} sortBy={this.state.sortBy}/>
+                    <Home path="/subscroller/" subreddit="wallpapers" showLightbox={this.showLightbox}/>
+                    <Feed path="/subscroller/subreddit/:subreddit" showLightbox={this.showLightbox} sortBy={this.state.sortBy}/>
+                    <Feed path="/subscroller/r/:subreddit" showLightbox={this.showLightbox} sortBy={this.state.sortBy}/>
                 </Router>
                 {this.state.lightbox && <Lightbox post={this.state.lightbox} closeLightbox={this.closeLightbox}/>}
             </React.Fragment>

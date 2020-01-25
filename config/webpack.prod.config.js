@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/client/index.jsx',
     output: {
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '/',
+        publicPath: '/subscroller/',
         filename: '[name].[contenthash].js'
     },
     module: {
