@@ -94,7 +94,7 @@ class Navigation extends Component {
         return (
             <Nav className="navigation" active={this.state.active}>
                 <NavLinks toggleNavigation={this.toggleNavigation}/>
-                <HomeButton to="/">
+                <HomeButton to="/subscroller/">
                     <MdHome/>
                 </HomeButton>
                 <Toggle active={this.state.active} onClick={this.toggleNavigation} name="toggle">
